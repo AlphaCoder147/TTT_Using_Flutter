@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,87 +17,95 @@ class _HomePageState extends State<HomePage> {
   int exscore = 0;
   int ohscore = 0;
   int filled = 0;
+
+  static var myNewFont = GoogleFonts.pressStart2p(
+      textStyle: const TextStyle(color: Colors.black, letterSpacing: 3));
+  static var myNewFontWhite = GoogleFonts.pressStart2p(
+      textStyle:
+          const TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15));
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
-        backgroundColor: Colors.grey[800],
-        body: Column(
-          children: [
-            Expanded(
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Player X',
-                            style: myTextStyle,
-                          ),
-                          Text(exscore.toString(), style: myTextStyle),
-                        ],
-                      ),
+    return Scaffold(
+      backgroundColor: Colors.grey[800],
+      body: Column(
+        children: [
+          const SizedBox(height: 15,),
+          Expanded(
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Player X',
+                          style: myNewFontWhite,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(exscore.toString(), style: myNewFontWhite),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Player O',
-                            style: myTextStyle,
-                          ),
-                          Text(
-                            ohscore.toString(),
-                            style: myTextStyle,
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Player O',
+                          style: myNewFontWhite,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          ohscore.toString(),
+                          style: myNewFontWhite,
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: GridView.builder(
-                  itemCount: 9,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        _tapped(index);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: (Colors.grey[700])!)),
-                        child: Center(
-                          child: Text(
-                            displayEx0h[index],
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 40),
-                          ),
+          ),
+          Expanded(
+            flex: 3,
+            child: GridView.builder(
+                itemCount: 9,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      _tapped(index);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: (Colors.grey[700])!)),
+                      child: Center(
+                        child: Text(
+                          displayEx0h[index],
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 40),
                         ),
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                }),
+          ),
+          Expanded(
+            child: Container(
+              child: Column(children: [
+                const SizedBox(height: 10),
+                Text('TIC TAC TOE', style: myNewFontWhite),
+                const SizedBox(height: 15),
+                Text('@ALPHAPANTHERKILO', style: myNewFontWhite),
+              ]),
             ),
-            Expanded(
-              child: Container(
-                child: Column(children: [
-                  const SizedBox(height: 10),
-                  Text('TIC TAC TOE', style: myTextStyle),
-                  Text('@ALPHAPANTHERKILO', style: myTextStyle),
-                ]),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -177,14 +186,14 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('DRAW'),
+            title: Text('DRAW', style: myNewFont,),
             actions: [
               ElevatedButton(
                 onPressed: () {
                   _clear();
                   Navigator.of(context).pop();
                 },
-                child: Text("PLAY AGAIN!", style: myTextStyle2),
+                child: Text("PLAY AGAIN!", style: myNewFont),
               )
             ],
           );
@@ -198,14 +207,14 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('WINNER IS : $winner'),
+            title: Text('WINNER IS : $winner', style: myNewFont),
             actions: [
               ElevatedButton(
                 onPressed: () {
                   _clear();
                   Navigator.of(context).pop();
                 },
-                child: Text("PLAY AGAIN!", style: myTextStyle2),
+                child: Text("PLAY AGAIN!", style: myNewFont),
               )
             ],
           );
