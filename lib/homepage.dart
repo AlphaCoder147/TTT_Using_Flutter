@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Colors.grey[900],
       body: Column(
         children: [
           const SizedBox(height: 15,),
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(children: [
                 const SizedBox(height: 10),
                 Text('TIC TAC TOE', style: myNewFontWhite),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 Text('@ALPHAPANTHERKILO', style: myNewFontWhite),
               ]),
             ),
