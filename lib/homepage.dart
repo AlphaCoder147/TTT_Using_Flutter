@@ -11,6 +11,9 @@ class _HomePageState extends State<HomePage> {
   bool ohturn = true;
   List<String> displayEx0h = ['', '', '', '', '', '', '', '', ''];
   var myTextStyle = const TextStyle(color: Colors.white, fontSize: 30);
+  var myTextStyle2 = const TextStyle(color: Colors.white, fontSize: 20);
+  int exscore = 0;
+  int ohscore = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                           'Player X',
                           style: myTextStyle,
                         ),
-                        Text('3', style: myTextStyle),
+                        Text(exscore.toString(), style: myTextStyle),
                       ],
                     ),
                   ),
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                           style: myTextStyle,
                         ),
                         Text(
-                          '3',
+                          ohscore.toString(),
                           style: myTextStyle,
                         )
                       ],
@@ -81,9 +84,7 @@ class _HomePageState extends State<HomePage> {
                 }),
           ),
           Expanded(
-            child: Container(
-              color: Colors.red,
-            ),
+            child: Container(),
           ),
         ],
       ),
@@ -155,11 +156,36 @@ class _HomePageState extends State<HomePage> {
 
   void _showwindialog(String winner) {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('WINNER IS : $winner'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  _clear();
+                  Navigator.of(context).pop();
+                },
+                child: Text("PLAY AGAIN!", style: myTextStyle2),
+              )
+            ],
           );
         });
+
+    if (winner == 'o') {
+      ohscore++;
+    } else if (winner == 'x') {
+      exscore++;
+    }
+    _clear();
+  }
+
+  void _clear() {
+    setState(() {
+      for (int i = 0; i < 9; i++) {
+        displayEx0h[i] = '';
+      }
+    });
   }
 }
